@@ -1,14 +1,14 @@
 # AGENTS.md — Oh-My-OpenCode Model Policy
 
-> 目标：当可用模型变化时，快速、可判定地更新 `oh-my-opencode.json`。
+> 目标：当可用模型变化时，快速、可判定地更新 `oh-my-openagent.json`。
 
 ---
 
 ## 0. 执行顺序
 
 1. 先运行 `opencode models`。
-2. 先改本目录的 `oh-my-opencode.json`。
-3. 再覆盖 `~/.config/opencode/oh-my-opencode.json`。
+2. 先改本目录的 `oh-my-openagent.json`。
+3. 再覆盖 `~/.config/opencode/oh-my-openagent.json`。
 4. 只做必要替换，不重排无关项。
 
 ---
@@ -36,10 +36,11 @@
 
 **T3 — OpenCode Free**
 - `opencode/qwen3.6-plus-free`
-- `opencode/glm-5-free`
-- `opencode/kimi-k2.5-free`
+- `opencode/nemotron-3-super-free`
+- `opencode/minimax-m2.5-free`
 - `opencode/minimax-m2.1-free`
 - `opencode/big-pickle`
+- `opencode/gpt-5-nano`
 
 ---
 
@@ -57,8 +58,8 @@
 |---|---|
 | `oracle` | `openai/gpt-5.4` (`high`) |
 | `ultrabrain` | `openai/gpt-5.4` (`xhigh`) |
-| `multimodal-looker` | `openai/gpt-5.4` |
-| `deep` | `openai/gpt-5.4` |
+| `multimodal-looker` | `openai/gpt-5.4` (`medium`) |
+| `deep` | `openai/gpt-5.4` (`medium`) |
 
 ---
 
@@ -89,31 +90,31 @@
 
 ### 4.1 Agents
 
-| Agent | 模型 |
-|---|---|
-| `sisyphus` | `zhipuai-coding-plan/glm-5.1` |
-| `hephaestus` | `zhipuai-coding-plan/glm-5` |
-| `oracle` | `openai/gpt-5.4` |
-| `explore` | `opencode/qwen3.6-plus-free` |
-| `multimodal-looker` | `openai/gpt-5.4` |
-| `prometheus` | `zhipuai-coding-plan/glm-5` |
-| `metis` | `zhipuai-coding-plan/glm-5` |
-| `momus` | `zhipuai-coding-plan/glm-5.1` |
-| `atlas` | `opencode/kimi-k2.5-free` |
-| `sisyphus-junior` | `opencode/glm-5-free` |
+| Agent | 模型 | Variant |
+|---|---|---|
+| `sisyphus` | `zhipuai-coding-plan/glm-5.1` | `max` |
+| `hephaestus` | `zhipuai-coding-plan/glm-5` | `medium` |
+| `oracle` | `openai/gpt-5.4` | `high` |
+| `explore` | `opencode/qwen3.6-plus-free` | — |
+| `multimodal-looker` | `openai/gpt-5.4` | `medium` |
+| `prometheus` | `zhipuai-coding-plan/glm-5.1` | `max` |
+| `metis` | `zhipuai-coding-plan/glm-5.1` | `max` |
+| `momus` | `zhipuai-coding-plan/glm-5.1` | `xhigh` |
+| `atlas` | `opencode/minimax-m2.5-free` | — |
+| `sisyphus-junior` | `opencode/nemotron-3-super-free` | — |
 
 ### 4.2 Categories
 
-| Category | 模型 |
-|---|---|
-| `visual-engineering` | `zhipuai-coding-plan/glm-5` |
-| `ultrabrain` | `openai/gpt-5.4` |
-| `deep` | `openai/gpt-5.4` |
-| `artistry` | `zhipuai-coding-plan/glm-5` |
-| `quick` | `opencode/glm-5-free` |
-| `unspecified-low` | `opencode/qwen3.6-plus-free` |
-| `unspecified-high` | `zhipuai-coding-plan/glm-4.7` |
-| `writing` | `zhipuai-coding-plan/glm-4.7` |
+| Category | 模型 | Variant |
+|---|---|---|
+| `visual-engineering` | `zhipuai-coding-plan/glm-5` | `high` |
+| `ultrabrain` | `openai/gpt-5.4` | `xhigh` |
+| `deep` | `openai/gpt-5.4` | `medium` |
+| `artistry` | `zhipuai-coding-plan/glm-5` | `high` |
+| `quick` | `opencode/nemotron-3-super-free` | — |
+| `unspecified-low` | `opencode/qwen3.6-plus-free` | — |
+| `unspecified-high` | `zhipuai-coding-plan/glm-5` | — |
+| `writing` | `zhipuai-coding-plan/glm-5` | — |
 
 ---
 
@@ -130,7 +131,7 @@
 
 1. 确认失效的是哪个 provider / model。
 2. 从同 Tier 选替代。
-3. 批量更新 `oh-my-opencode.json`。
+3. 批量更新 `oh-my-openagent.json`。
 
 ### 5.3 想省钱
 
@@ -151,8 +152,8 @@
 
 ### 6.1 工作副本
 
-1. 编辑源：本目录 `oh-my-opencode.json`。
-2. 落盘目标：`~/.config/opencode/oh-my-opencode.json`。
+1. 编辑源：本目录 `oh-my-openagent.json`。
+2. 落盘目标：`~/.config/opencode/oh-my-openagent.json`。
 3. 顺序：先看工作区 diff，再同步到真实环境。
 
 ### 6.2 查看命令
@@ -167,7 +168,7 @@ opencode models
 python3 - <<'PY'
 import json
 data=json.load(open('$HOME/.cache/opencode/models.json'))
-cfg=json.load(open('$HOME/.config/opencode/oh-my-opencode.json'))
+cfg=json.load(open('$HOME/.config/opencode/oh-my-openagent.json'))
 used={v['model'].split('/')[0] for s in ('agents','categories') for v in cfg.get(s,{}).values() if '/' in v.get('model','')}
 for pid in sorted(used):
     ms=data.get(pid,{}).get('models',{})

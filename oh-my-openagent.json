@@ -2,10 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "zhipuai-coding-plan/glm-5.1"
+      "model": "zhipuai-coding-plan/glm-5.1",
+      "variant": "max"
     },
     "hephaestus": {
-      "model": "zhipuai-coding-plan/glm-5"
+      "model": "zhipuai-coding-plan/glm-5",
+      "variant": "medium"
     },
     "oracle": {
       "model": "openai/gpt-5.4",
@@ -15,49 +17,56 @@
       "model": "opencode/qwen3.6-plus-free"
     },
     "multimodal-looker": {
-      "model": "openai/gpt-5.4"
+      "model": "openai/gpt-5.4",
+      "variant": "medium"
     },
     "prometheus": {
-      "model": "zhipuai-coding-plan/glm-5"
+      "model": "zhipuai-coding-plan/glm-5.1",
+      "variant": "max"
     },
     "metis": {
-      "model": "zhipuai-coding-plan/glm-5"
+      "model": "zhipuai-coding-plan/glm-5.1",
+      "variant": "max"
     },
     "momus": {
-      "model": "zhipuai-coding-plan/glm-5.1"
+      "model": "zhipuai-coding-plan/glm-5.1",
+      "variant": "xhigh"
     },
     "atlas": {
-      "model": "opencode/kimi-k2.5-free"
+      "model": "opencode/minimax-m2.5-free"
     },
     "sisyphus-junior": {
-      "model": "opencode/glm-5-free"
+      "model": "opencode/nemotron-3-super-free"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "zhipuai-coding-plan/glm-5"
+      "model": "zhipuai-coding-plan/glm-5",
+      "variant": "high"
     },
     "ultrabrain": {
       "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "deep": {
-      "model": "openai/gpt-5.4"
+      "model": "openai/gpt-5.4",
+      "variant": "medium"
     },
     "artistry": {
-      "model": "zhipuai-coding-plan/glm-5"
+      "model": "zhipuai-coding-plan/glm-5",
+      "variant": "high"
     },
     "quick": {
-      "model": "opencode/glm-5-free"
+      "model": "opencode/nemotron-3-super-free"
     },
     "unspecified-low": {
       "model": "opencode/qwen3.6-plus-free"
     },
     "unspecified-high": {
-      "model": "zhipuai-coding-plan/glm-4.7"
+      "model": "zhipuai-coding-plan/glm-5"
     },
     "writing": {
-      "model": "zhipuai-coding-plan/glm-4.7"
+      "model": "zhipuai-coding-plan/glm-5"
     }
   }
 }
