@@ -17,7 +17,7 @@
 
 | Tier | 格式 | 用途 |
 |---|---|---|
-| T1 | `openai/<model>` | 只放关键位置 |
+| T1 | `openai/<model>` (GPT / Claude / Gemini / Kimi 等) | Premium 能力池 — 按角色需求选最适合的模型 |
 | T2 | `zhipuai-coding-plan/<model>` | 核心执行位 |
 | T3 | `opencode/<model>-free` | 高频低价值位 |
 
@@ -46,20 +46,20 @@
 
 ## 2. 固定规则
 
-1. **OpenAI 只按用户规则放关键位置**。
-2. **其它模型按能力分配**。
-3. **能力分配仅适用于非 OpenAI 模型**。
+1. **T1 模型按角色需求选择最适合的，不限模型家族**。
+2. **所有模型统一按能力竞争分配**。
+3. **Token 预算敏感位（ultrabrain、deep）优先选 token 充裕的模型**。
 4. **优先级：** T1 > T2 > T3。
 5. **替换原则：** 同 Tier 优先；跨 Tier 仅在明确需要时调整。
 
-### 2.1 OpenAI 固定位置
+### 2.1 T1 固定位置
 
-| 位置 | 模型 |
-|---|---|
-| `oracle` | `openai/gpt-5.4` (`high`) |
-| `ultrabrain` | `openai/gpt-5.4` (`xhigh`) |
-| `multimodal-looker` | `openai/gpt-5.4` (`medium`) |
-| `deep` | `openai/gpt-5.4` (`medium`) |
+| 位置 | 模型 | Variant | 选择理由 |
+|---|---|---|---|
+| `oracle` | `openai/claude-opus-4-6-thinking` | `high` | Thinking 模型擅长深度推理，输出短而精，匹配只读咨询角色 |
+| `ultrabrain` | `openai/gpt-5.4` | `xhigh` | 超高难度逻辑需要大量 token |
+| `multimodal-looker` | `openai/gemini-3.1-flash-image` | `medium` | 专为多模态设计，视觉理解强 |
+| `deep` | `openai/gpt-5.4` | `medium` | 自主长链执行需要长上下文 |
 
 ---
 
@@ -94,9 +94,9 @@
 |---|---|---|
 | `sisyphus` | `zhipuai-coding-plan/glm-5.1` | `max` |
 | `hephaestus` | `zhipuai-coding-plan/glm-5` | `medium` |
-| `oracle` | `openai/gpt-5.4` | `high` |
+| `oracle` | `openai/claude-opus-4-6-thinking` | `high` |
 | `explore` | `opencode/qwen3.6-plus-free` | — |
-| `multimodal-looker` | `openai/gpt-5.4` | `medium` |
+| `multimodal-looker` | `openai/gemini-3.1-flash-image` | `medium` |
 | `prometheus` | `zhipuai-coding-plan/glm-5.1` | `max` |
 | `metis` | `zhipuai-coding-plan/glm-5.1` | `max` |
 | `momus` | `zhipuai-coding-plan/glm-5.1` | `xhigh` |

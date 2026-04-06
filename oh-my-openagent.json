@@ -10,14 +10,14 @@
       "variant": "medium"
     },
     "oracle": {
-      "model": "openai/gpt-5.4",
+      "model": "openai/claude-opus-4-6-thinking",
       "variant": "high"
     },
     "explore": {
       "model": "opencode/qwen3.6-plus-free"
     },
     "multimodal-looker": {
-      "model": "openai/gpt-5.4",
+      "model": "openai/gemini-3.1-flash-image",
       "variant": "medium"
     },
     "prometheus": {
