@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import os
+import subprocess
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -17,7 +18,6 @@ MAX_TOKENS = 5
 
 MODELS_CACHE = Path(os.path.expanduser("~/.cache/opencode/models.json"))
 AUTH_CONFIG = Path(os.path.expanduser("~/.local/share/opencode/auth.json"))
-AGENT_CONFIG = Path(os.path.expanduser("~/.config/opencode/oh-my-openagent.json"))
 OPENCODE_CONFIG = Path(os.path.expanduser("~/.config/opencode/opencode.json"))
 
 
@@ -36,6 +36,22 @@ class ModelResult:
 
 
 def load_testable_models():
+    try:
+        output = subprocess.check_output(["opencode", "models"], text=True)
+    except FileNotFoundError:
+        print("ERROR: 'opencode' command not found. Please ensure opencode is installed and in PATH.", file=sys.stderr)
+        sys.exit(1)
+    
+    visible_models = set()
+    for line in output.splitlines():
+        line = line.strip()
+        if line and '/' in line:
+            visible_models.add(line)
+    
+    if not visible_models:
+        print("ERROR: No models found from 'opencode models' command", file=sys.stderr)
+        sys.exit(1)
+
     if not MODELS_CACHE.exists():
         print(f"ERROR: Models cache not found: {MODELS_CACHE}", file=sys.stderr)
         sys.exit(1)
@@ -50,18 +66,6 @@ def load_testable_models():
         for provider, cred in auth.items():
             if cred.get("key"):
                 api_keys[provider] = cred["key"]
-
-    target_providers = set()
-    if AGENT_CONFIG.exists():
-        with open(AGENT_CONFIG) as f:
-            agent_cfg = json.load(f)
-        for section in ("agents", "categories"):
-            for entry in agent_cfg.get(section, {}).values():
-                model = entry.get("model", "")
-                if "/" in model:
-                    target_providers.add(model.split("/", 1)[0])
-    if not target_providers:
-        target_providers = set(api_keys.keys())
 
     provider_overrides = {}
     if OPENCODE_CONFIG.exists():
@@ -80,17 +84,28 @@ def load_testable_models():
                 provider_overrides[provider] = override
 
     testable = []
-    missing_auth = []
-    for provider, prov in data.items():
-        if provider not in target_providers:
+    missing_auth = set()
+    
+    for full_model_id in visible_models:
+        if '/' not in full_model_id:
             continue
-
+        provider, model_id = full_model_id.split('/', 1)
+        
+        if provider not in data:
+            continue
+            
+        prov = data[provider]
         override = provider_overrides.get(provider, {})
 
         if "models" in override:
-            model_ids = override["models"]
+            if model_id not in override["models"]:
+                continue
+            model_ids = [model_id]
         else:
-            model_ids = list(prov.get("models", {}).keys())
+            if model_id not in prov.get("models", {}):
+                continue
+            model_ids = [model_id]
+
         if not model_ids:
             continue
 
@@ -111,7 +126,7 @@ def load_testable_models():
                     break
 
         if not key:
-            missing_auth.append(provider)
+            missing_auth.add(provider)
 
         for model_id in model_ids:
             full_id = f"{provider}/{model_id}"
