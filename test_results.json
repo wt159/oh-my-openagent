@@ -1,0 +1,886 @@
+{
+  "timestamp": "2026-04-09T16:41:30Z",
+  "total_models": 68,
+  "connected": 19,
+  "failed": 49,
+  "models": [
+    {
+      "model_id": "openai/gpt-5.2",
+      "provider": "openai",
+      "endpoint": "http://127.0.0.1:8317/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 3.1,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "openai/gpt-5.2-codex",
+      "provider": "openai",
+      "endpoint": "http://127.0.0.1:8317/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 3.68,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "openai/gpt-5.3-codex",
+      "provider": "openai",
+      "endpoint": "http://127.0.0.1:8317/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 3.47,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "openai/gpt-5.4",
+      "provider": "openai",
+      "endpoint": "http://127.0.0.1:8317/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 1.95,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "openai/gpt-5.4-mini",
+      "provider": "openai",
+      "endpoint": "http://127.0.0.1:8317/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 1.18,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "opencode/big-pickle",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 5.35,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "opencode/claude-3-5-haiku",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.68,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-haiku-4-5",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.75,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-opus-4-1",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.73,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-opus-4-5",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.76,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-opus-4-6",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.79,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-sonnet-4",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.67,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-sonnet-4-5",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.74,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-sonnet-4-6",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.77,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gemini-3-flash",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.72,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gemini-3-pro",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.79,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gemini-3.1-pro",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.76,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/glm-4.6",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.68,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/glm-4.7",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.84,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/glm-4.7-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.72,
+      "max_safe_concurrency": 0,
+      "error": "Model glm-4.7-free not supported"
+    },
+    {
+      "model_id": "opencode/glm-5",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.84,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/glm-5-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.77,
+      "max_safe_concurrency": 0,
+      "error": "Model glm-5-free not supported"
+    },
+    {
+      "model_id": "opencode/glm-5.1",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.73,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.72,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5-codex",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 1.8,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5-nano",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 500,
+      "latency": 1.29,
+      "max_safe_concurrency": 0,
+      "error": "Cannot read properties of undefined (reading 'input_tokens')"
+    },
+    {
+      "model_id": "opencode/gpt-5.1",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.71,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.1-codex",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.73,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.1-codex-max",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.79,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.1-codex-mini",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.76,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.2",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.76,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.2-codex",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 1.75,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.3-codex",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.72,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.3-codex-spark",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 1.78,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.4",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.71,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.4-mini",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.79,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.4-nano",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 1.07,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.4-pro",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.68,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/grok-code",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.75,
+      "max_safe_concurrency": 0,
+      "error": "Model grok-code not supported"
+    },
+    {
+      "model_id": "opencode/kimi-k2",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.78,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/kimi-k2-thinking",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.66,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/kimi-k2.5",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.76,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/kimi-k2.5-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.74,
+      "max_safe_concurrency": 0,
+      "error": "Model kimi-k2.5-free not supported"
+    },
+    {
+      "model_id": "opencode/mimo-v2-flash-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.75,
+      "max_safe_concurrency": 0,
+      "error": "Model mimo-v2-flash-free not supported"
+    },
+    {
+      "model_id": "opencode/mimo-v2-omni-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.79,
+      "max_safe_concurrency": 0,
+      "error": "Model mimo-v2-omni-free not supported"
+    },
+    {
+      "model_id": "opencode/mimo-v2-pro-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.7,
+      "max_safe_concurrency": 0,
+      "error": "Model mimo-v2-pro-free not supported"
+    },
+    {
+      "model_id": "opencode/minimax-m2.1",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.76,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/minimax-m2.1-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.78,
+      "max_safe_concurrency": 0,
+      "error": "Model minimax-m2.1-free not supported"
+    },
+    {
+      "model_id": "opencode/minimax-m2.5",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.66,
+      "max_safe_concurrency": 0,
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/minimax-m2.5-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 2.12,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "opencode/nemotron-3-super-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 1.35,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "opencode/qwen3-coder",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 2.0,
+      "max_safe_concurrency": 0,
+      "error": "Model qwen3-coder not supported"
+    },
+    {
+      "model_id": "opencode/qwen3.6-plus-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": false,
+      "status": 401,
+      "latency": 0.72,
+      "max_safe_concurrency": 0,
+      "error": "Free promotion has ended for Qwen3.6 Plus Free. You can continue using the model by subscribing to OpenCode Go - https://opencode.ai/go"
+    },
+    {
+      "model_id": "opencode/trinity-large-preview-free",
+      "provider": "opencode",
+      "endpoint": "https://opencode.ai/zen/v1",
+      "connected": true,
+      "status": 200,
+      "latency": 3.09,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.5",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 0.63,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.5-air",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 0.55,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.5-flash",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 11.79,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.5v",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 0.6,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.6",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 4.73,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.6v",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 0.67,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.6v-flash",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": false,
+      "status": 429,
+      "latency": 0.44,
+      "max_safe_concurrency": 0,
+      "error": "\u8be5\u6a21\u578b\u5f53\u524d\u8bbf\u95ee\u91cf\u8fc7\u5927\uff0c\u8bf7\u60a8\u7a0d\u540e\u518d\u8bd5"
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.7",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 1.03,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.7-flash",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": false,
+      "status": 0,
+      "latency": 30.21,
+      "max_safe_concurrency": 0,
+      "error": "The read operation timed out"
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.7-flashx",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": false,
+      "status": 429,
+      "latency": 0.3,
+      "max_safe_concurrency": 0,
+      "error": "\u4f59\u989d\u4e0d\u8db3\u6216\u65e0\u53ef\u7528\u8d44\u6e90\u5305,\u8bf7\u5145\u503c\u3002"
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-5",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 3.02,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-5-turbo",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 0.75,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-5.1",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": true,
+      "status": 200,
+      "latency": 5.37,
+      "max_safe_concurrency": 1,
+      "error": ""
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-5v-turbo",
+      "provider": "zhipuai-coding-plan",
+      "endpoint": "https://open.bigmodel.cn/api/coding/paas/v4",
+      "connected": false,
+      "status": 429,
+      "latency": 0.46,
+      "max_safe_concurrency": 0,
+      "error": "\u5f53\u524d\u8ba2\u9605\u5957\u9910\u6682\u672a\u5f00\u653eGLM-5V-Turbo\u6743\u9650"
+    }
+  ],
+  "failed_models": [
+    {
+      "model_id": "opencode/claude-3-5-haiku",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-haiku-4-5",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-opus-4-1",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-opus-4-5",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-opus-4-6",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-sonnet-4",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-sonnet-4-5",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/claude-sonnet-4-6",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gemini-3-flash",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gemini-3-pro",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gemini-3.1-pro",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/glm-4.6",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/glm-4.7",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/glm-4.7-free",
+      "error": "Model glm-4.7-free not supported"
+    },
+    {
+      "model_id": "opencode/glm-5",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/glm-5-free",
+      "error": "Model glm-5-free not supported"
+    },
+    {
+      "model_id": "opencode/glm-5.1",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5-codex",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5-nano",
+      "error": "Cannot read properties of undefined (reading 'input_tokens')"
+    },
+    {
+      "model_id": "opencode/gpt-5.1",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.1-codex",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.1-codex-max",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.1-codex-mini",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.2",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.2-codex",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.3-codex",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.3-codex-spark",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.4",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.4-mini",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.4-nano",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/gpt-5.4-pro",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/grok-code",
+      "error": "Model grok-code not supported"
+    },
+    {
+      "model_id": "opencode/kimi-k2",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/kimi-k2-thinking",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/kimi-k2.5",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/kimi-k2.5-free",
+      "error": "Model kimi-k2.5-free not supported"
+    },
+    {
+      "model_id": "opencode/mimo-v2-flash-free",
+      "error": "Model mimo-v2-flash-free not supported"
+    },
+    {
+      "model_id": "opencode/mimo-v2-omni-free",
+      "error": "Model mimo-v2-omni-free not supported"
+    },
+    {
+      "model_id": "opencode/mimo-v2-pro-free",
+      "error": "Model mimo-v2-pro-free not supported"
+    },
+    {
+      "model_id": "opencode/minimax-m2.1",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/minimax-m2.1-free",
+      "error": "Model minimax-m2.1-free not supported"
+    },
+    {
+      "model_id": "opencode/minimax-m2.5",
+      "error": "Missing API key."
+    },
+    {
+      "model_id": "opencode/qwen3-coder",
+      "error": "Model qwen3-coder not supported"
+    },
+    {
+      "model_id": "opencode/qwen3.6-plus-free",
+      "error": "Free promotion has ended for Qwen3.6 Plus Free. You can continue using the model by subscribing to OpenCode Go - https://opencode.ai/go"
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.6v-flash",
+      "error": "\u8be5\u6a21\u578b\u5f53\u524d\u8bbf\u95ee\u91cf\u8fc7\u5927\uff0c\u8bf7\u60a8\u7a0d\u540e\u518d\u8bd5"
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.7-flash",
+      "error": "The read operation timed out"
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-4.7-flashx",
+      "error": "\u4f59\u989d\u4e0d\u8db3\u6216\u65e0\u53ef\u7528\u8d44\u6e90\u5305,\u8bf7\u5145\u503c\u3002"
+    },
+    {
+      "model_id": "zhipuai-coding-plan/glm-5v-turbo",
+      "error": "\u5f53\u524d\u8ba2\u9605\u5957\u9910\u6682\u672a\u5f00\u653eGLM-5V-Turbo\u6743\u9650"
+    }
+  ]
+}
