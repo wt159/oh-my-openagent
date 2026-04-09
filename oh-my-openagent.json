@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "openai/gpt-5.4-mini",
-      "variant": "high"
+      "model": "zhipuai-coding-plan/glm-5.1",
+      "variant": "max"
     },
     "hephaestus": {
       "model": "zhipuai-coding-plan/glm-5",
@@ -60,7 +60,7 @@
       "model": "opencode/nemotron-3-super-free"
     },
     "unspecified-low": {
-      "model": "opencode/minimax-m2.5-free"
+      "model": "opencode/big-pickle"
     },
     "unspecified-high": {
       "model": "zhipuai-coding-plan/glm-5"
