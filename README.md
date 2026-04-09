@@ -26,19 +26,56 @@
 ## 使用方法
 
 ```bash
-# 1. 查看当前可用模型
+# 1. 先重跑模型测试，刷新 test_results.json
+python3 test_all_models.py
+
+# 2. 查看当前可见模型
 opencode models
 
-# 2. 复制配置到 OpenCode
+# 3. 查看当前实际可用模型（connected=true）
+python3 - <<'PY'
+import json
+data=json.load(open('test_results.json'))
+for m in data['models']:
+    if m.get('connected'):
+        print(m['model_id'])
+PY
+
+# 4. 一键筛出最终候选集（可见 ∩ 可用）
+python3 - <<'PY'
+import json, subprocess
+
+visible = {
+    line.strip()
+    for line in subprocess.check_output(['opencode', 'models'], text=True).splitlines()
+    if '/' in line
+}
+
+data = json.load(open('test_results.json'))
+connected = {
+    m['model_id']
+    for m in data['models']
+    if m.get('connected') and m.get('status') == 200 and not m.get('error')
+}
+
+for model_id in sorted(visible & connected):
+    print(model_id)
+PY
+
+# 5. 复制配置到 OpenCode
 cp oh-my-openagent.json ~/.config/opencode/oh-my-openagent.json
 ```
 
+最后一个命令块会直接输出“最终候选集”：也就是同时满足“`opencode models` 可见”且“`test_results.json` 中 `connected=true`、`status == 200`、`error` 为空”的模型。
+
 ## 变更流程
 
-1. 运行 `opencode models` 获取最新可用模型列表
-2. 按 AGENTS.md 中的分层规则和评估维度分配模型
-3. 编辑本目录的 `oh-my-openagent.json`
-4. 同步到 `~/.config/opencode/oh-my-openagent.json`
+1. 先运行 `python3 test_all_models.py`，刷新 `test_results.json`
+2. 运行 `opencode models` 获取当前可见模型列表
+3. 读取最新的 `test_results.json`，过滤出 `connected=true` 的实际可用模型
+4. 按 AGENTS.md 中的分层规则、可用性门禁和评估维度分配模型
+5. 编辑本目录的 `oh-my-openagent.json`
+6. 同步到 `~/.config/opencode/oh-my-openagent.json`
 
 详细规则见 [AGENTS.md](./AGENTS.md)。
 
@@ -51,7 +88,7 @@ cp oh-my-openagent.json ~/.config/opencode/oh-my-openagent.json
 | sisyphus | glm-5.1 | max |
 | hephaestus | glm-5 | medium |
 | oracle | gpt-5.4 | high |
-| explore | qwen3.6-plus-free | — |
+| explore | big-pickle | — |
 | multimodal-looker | gpt-5.4 | medium |
 | prometheus | glm-5.1 | max |
 | metis | glm-5.1 | max |
@@ -68,7 +105,7 @@ cp oh-my-openagent.json ~/.config/opencode/oh-my-openagent.json
 | deep | gpt-5.4 | medium |
 | artistry | glm-5 | high |
 | quick | nemotron-3-super-free | — |
-| unspecified-low | qwen3.6-plus-free | — |
+| unspecified-low | big-pickle | — |
 | unspecified-high | glm-5 | — |
 | writing | glm-5 | — |
 
