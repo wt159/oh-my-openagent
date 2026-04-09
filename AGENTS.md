@@ -16,36 +16,56 @@
 
 ---
 
-## 1. 模型分层
+## 1. 模型选择原则
 
-| Tier | 格式 | 用途 |
-|---|---|---|
-| T1 | `openai/<model>` (GPT / Claude / Gemini / Kimi 等) | Premium 能力池 — 按角色需求选最适合的模型 |
-| T2 | `zhipuai-coding-plan/<model>` | 核心执行位 |
-| T3 | `opencode/<model>-free` | 高频低价值位 |
+> **核心变更：模型不再硬性分层（T1/T2/T3），而是按实际能力竞争分配。**
+>
+> Provider（openai / zhipuai-coding-plan / opencode 等）仅作为标识，不决定优先级。
+> 每个模型根据其在推理、代码、工具调用、上下文、速度/成本、视觉等维度的实际表现，
+> 与角色的能力需求匹配后决定分配。
 
-### 1.1 当前参考
+### 1.1 当前候选模型
 
 > 以 `opencode models` 和 `test_results.json` 的交集为准。
 >
-> `opencode models` 只表示“可见 / 可枚举”；`test_results.json` 中 `connected=true` 才表示“当前环境可用”。
+> `opencode models` 只表示"可见 / 可枚举"；`test_results.json` 中 `connected=true` 才表示"当前环境可用"。
 
-**T1 — OpenAI**
+**OpenAI**
 - `openai/gpt-5.4`
-- `openai/gpt-5.2`
 - `openai/gpt-5.4-mini`
+- `openai/gpt-5.2`
+- `openai/gpt-5.2-codex`
+- `openai/gpt-5.3-codex`
 
-**T2 — ZhiPu Coding Plan**
+**ZhiPu Coding Plan**
 - `zhipuai-coding-plan/glm-5.1`
 - `zhipuai-coding-plan/glm-5`
+- `zhipuai-coding-plan/glm-5-turbo`
 - `zhipuai-coding-plan/glm-4.7`
 - `zhipuai-coding-plan/glm-4.6`
+- `zhipuai-coding-plan/glm-4.6v`
 - `zhipuai-coding-plan/glm-4.5`
+- `zhipuai-coding-plan/glm-4.5-air`
+- `zhipuai-coding-plan/glm-4.5-flash`
+- `zhipuai-coding-plan/glm-4.5v`
 
-**T3 — OpenCode Free**
+**OpenCode Free**
 - `opencode/nemotron-3-super-free`
 - `opencode/minimax-m2.5-free`
 - `opencode/big-pickle`
+
+### 1.2 能力评估依据
+
+选择模型时参考以下权威来源（按可信度排序）：
+
+1. **实际测试结果**：`test_results.json` 中的连通性、延迟、并发数据。
+2. **公开基准测试**：官方 benchmark（如 MMLU、HumanEval、Arena Elo 等）。
+3. **社区评测**：LMSys Chatbot Arena、独立评测报告。
+4. **实际使用体感**：在当前项目中的代码生成质量、工具调用稳定性等主观经验。
+
+> **注意**：Provider 品牌不等于能力。一个 `opencode/*-free` 模型如果在推理维度表现优异，
+> 完全可以分配到 `oracle` 等关键位置；反之，`openai/*` 模型如果在特定任务上表现不佳，
+> 也不应仅因品牌而占据关键位置。
 
 ---
 
@@ -53,12 +73,11 @@
 
 1. **选模型时必须同时参考 `opencode models` 和 `test_results.json`。**
 2. **只有 `test_results.json` 中 `connected=true` 的模型，才允许进入候选集。**
-3. **所有模型统一按能力竞争分配。**
+3. **所有模型统一按能力竞争分配，不按 Provider 或品牌预设优先级。**
 4. **Token 预算敏感位（ultrabrain、deep）优先选 token 充裕的模型。**
-5. **优先级：** T1 > T2 > T3。
-6. **替换原则：** 同 Tier 优先；跨 Tier 仅在明确需要时调整。
-7. **当前参考 / 固定位置 / 当前配置，都不得保留已在 `test_results.json` 中判定不可用的模型示例。**
-8. **每次更新模型配置前，都必须先重跑模型测试并刷新 `test_results.json`，不得基于旧测试结果做决策。**
+5. **替换原则：** 优先选能力最匹配当前角色需求的模型；能力相当时选成本更低的。
+6. **当前参考 / 固定位置 / 当前配置，都不得保留已在 `test_results.json` 中判定不可用的模型示例。**
+7. **每次更新模型配置前，都必须先重跑模型测试并刷新 `test_results.json`，不得基于旧测试结果做决策。**
 
 ### 2.1 可用性门禁（AI MUST FOLLOW）
 
@@ -70,34 +89,36 @@ Step B. 读取 `test_results.json`
 Step C. 候选集 = 同时满足以下条件的模型：
   - 出现在 `opencode models`
   - `test_results.json.models[].connected == true`
-Step D. 从候选集中按 Tier 和角色需求选择
-Step E. 若同 Tier 无可用模型，才允许跨 Tier 回退，并记录原因
+Step D. 从候选集中按角色能力需求选择最佳匹配模型
+Step E. 若首选模型不可用，选能力最接近的替代，并记录原因
 ```
 
 **MUST**
 - 先运行 `python3 test_all_models.py`，刷新 `test_results.json`。
 - 先检查 `test_results.json`，再决定模型。
 - 只选择 `connected=true` 的模型。
-- 同 Tier 有可用模型时，优先同 Tier 替换。
-
 **MUST NOT**
 - 不得因为模型出现在 `opencode models` 中就直接选用。
 - 不得选择 `connected=false` 的模型。
 - 不得选择 `status != 200` 或 `error` 非空的模型。
 - 不得继续保留 `401 / 403 / 429 / 500 / timeout / not supported / Missing API key / auth_unavailable` 这类失败模型作为“当前参考”或默认示例。
 
-### 2.2 T1 固定位置
+### 2.2 关键位置固定模型
 
 | 位置 | 模型 | Variant | 选择理由 |
 |---|---|---|---|
-| `oracle` | `openai/gpt-5.4` | `high` | 当前测试中可用的 T1 高能力模型，适合作为只读咨询位 |
+| `sisyphus` | `openai/gpt-5.4` | `max` | 主编排需要最强推理 + 工具调用 |
+| `oracle` | `openai/gpt-5.4` | `high` | 只读咨询位需要高能力推理 |
 | `ultrabrain` | `openai/gpt-5.4` | `xhigh` | 超高难度逻辑需要大量 token |
-| `multimodal-looker` | `openai/gpt-5.4` | `medium` | 当前测试集中无可用专用视觉 T1 模型，临时回退到可用通用 T1 |
+| `multimodal-looker` | `openai/gpt-5.4` | `medium` | 当前无可用专用视觉模型，回退到最强通用模型 |
 | `deep` | `openai/gpt-5.4` | `medium` | 自主长链执行需要长上下文 |
+| `prometheus` | `openai/gpt-5.4` | `max` | 计划构建需要强推理 |
+| `metis` | `openai/gpt-5.4` | `max` | 预规划分析需要强推理 |
+| `momus` | `openai/gpt-5.4` | `xhigh` | 评审需要深度推理 + 长上下文 |
 
 ---
 
-## 3. 非 OpenAI 模型选择依据
+## 3. 模型能力评估与分配
 
 ### 3.1 评估维度
 
@@ -126,14 +147,14 @@ Step E. 若同 Tier 无可用模型，才允许跨 Tier 回退，并记录原因
 
 | Agent | 模型 | Variant |
 |---|---|---|
-| `sisyphus` | `zhipuai-coding-plan/glm-5.1` | `max` |
-| `hephaestus` | `zhipuai-coding-plan/glm-5` | `medium` |
+| `sisyphus` | `openai/gpt-5.4` | `max` |
+| `hephaestus` | `openai/gpt-5.4-mini` | `medium` |
 | `oracle` | `openai/gpt-5.4` | `high` |
 | `explore` | `opencode/big-pickle` | — |
 | `multimodal-looker` | `openai/gpt-5.4` | `medium` |
-| `prometheus` | `zhipuai-coding-plan/glm-5.1` | `max` |
-| `metis` | `zhipuai-coding-plan/glm-5.1` | `max` |
-| `momus` | `zhipuai-coding-plan/glm-5.1` | `xhigh` |
+| `prometheus` | `openai/gpt-5.4` | `max` |
+| `metis` | `openai/gpt-5.4` | `max` |
+| `momus` | `openai/gpt-5.4` | `xhigh` |
 | `atlas` | `opencode/minimax-m2.5-free` | — |
 | `sisyphus-junior` | `opencode/nemotron-3-super-free` | — |
 
@@ -141,14 +162,14 @@ Step E. 若同 Tier 无可用模型，才允许跨 Tier 回退，并记录原因
 
 | Category | 模型 | Variant |
 |---|---|---|
-| `visual-engineering` | `zhipuai-coding-plan/glm-5` | `high` |
+| `visual-engineering` | `openai/gpt-5.4` | `high` |
 | `ultrabrain` | `openai/gpt-5.4` | `xhigh` |
 | `deep` | `openai/gpt-5.4` | `medium` |
-| `artistry` | `zhipuai-coding-plan/glm-5` | `high` |
+| `artistry` | `openai/gpt-5.4` | `high` |
 | `quick` | `opencode/nemotron-3-super-free` | — |
 | `unspecified-low` | `opencode/big-pickle` | — |
-| `unspecified-high` | `zhipuai-coding-plan/glm-5` | — |
-| `writing` | `zhipuai-coding-plan/glm-5` | — |
+| `unspecified-high` | `openai/gpt-5.4-mini` | `medium` |
+| `writing` | `openai/gpt-5.4-mini` | `medium` |
 
 ---
 
@@ -167,30 +188,30 @@ Step E. 若同 Tier 无可用模型，才允许跨 Tier 回退，并记录原因
 1. 先跑 `python3 test_all_models.py`，生成最新测试结果。
 2. 再跑 `opencode models`。
 3. 读取最新的 `test_results.json`，过滤出 `connected=true` 的模型。
-4. 判断 provider / tier。
-5. 只在同 Tier 内优先替换。
-6. 更新本文件“当前参考”。
+4. 评估该模型在各维度的实际能力。
+5. 按角色能力需求匹配分配；仅替换能力相当或更优的模型。
+6. 更新本文件"当前参考"。
 
 ### 5.2 模型失效
 
 1. 在 `test_results.json` 中确认失效的是哪个 provider / model。
 2. 失效判定：`connected=false`，或 `status != 200`，或 `error` 非空。
-3. 从同 Tier 且 `connected=true` 的模型中选替代。
+3. 从剩余可用模型中，选能力最接近失效模型的替代。
 4. 批量更新 `oh-my-openagent.json`。
 
 ### 5.3 想省钱
 
-1. 先保留 T1 固定位置。
-2. 优先压缩 T2 → T3 的非关键位。
+1. 先保留关键位置（oracle / ultrabrain）。
+2. 优先用免费或低成本模型替换非关键位。
 3. 不改 `oracle` / `ultrabrain`。
 
 ### 5.4 账号/环境变化
 
 1. 先看 `opencode models` 的实际输出。
 2. 再看 `test_results.json` 的实际连通结果。
-3. 新 provider：只有在 `connected=true` 时才补到“当前参考”。
+3. 新 provider：只有在 `connected=true` 时才补到"当前参考"。
 4. 旧 provider 消失，或该 provider 在 `test_results.json` 中全部失效：删掉所有引用。
-5. 模型改名但能力接近，且测试通过：保持原 Tier。
+5. 模型改名但能力接近，且测试通过：保持原位置。
 
 ---
 

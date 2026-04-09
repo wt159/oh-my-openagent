@@ -2,11 +2,11 @@
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode.schema.json",
   "agents": {
     "sisyphus": {
-      "model": "zhipuai-coding-plan/glm-5.1",
+      "model": "openai/gpt-5.4",
       "variant": "max"
     },
     "hephaestus": {
-      "model": "zhipuai-coding-plan/glm-5",
+      "model": "openai/gpt-5.4-mini",
       "variant": "medium"
     },
     "oracle": {
@@ -21,15 +21,15 @@
       "variant": "medium"
     },
     "prometheus": {
-      "model": "zhipuai-coding-plan/glm-5.1",
+      "model": "openai/gpt-5.4",
       "variant": "max"
     },
     "metis": {
-      "model": "zhipuai-coding-plan/glm-5.1",
+      "model": "openai/gpt-5.4",
       "variant": "max"
     },
     "momus": {
-      "model": "zhipuai-coding-plan/glm-5.1",
+      "model": "openai/gpt-5.4",
       "variant": "xhigh"
     },
     "atlas": {
@@ -41,7 +41,7 @@
   },
   "categories": {
     "visual-engineering": {
-      "model": "zhipuai-coding-plan/glm-5",
+      "model": "openai/gpt-5.4",
       "variant": "high"
     },
     "ultrabrain": {
@@ -53,7 +53,7 @@
       "variant": "medium"
     },
     "artistry": {
-      "model": "zhipuai-coding-plan/glm-5",
+      "model": "openai/gpt-5.4",
       "variant": "high"
     },
     "quick": {
@@ -63,10 +63,12 @@
       "model": "opencode/big-pickle"
     },
     "unspecified-high": {
-      "model": "zhipuai-coding-plan/glm-5"
+      "model": "openai/gpt-5.4-mini",
+      "variant": "medium"
     },
     "writing": {
-      "model": "zhipuai-coding-plan/glm-5"
+      "model": "openai/gpt-5.4-mini",
+      "variant": "medium"
     }
   }
 }
