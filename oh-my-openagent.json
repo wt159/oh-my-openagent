@@ -6,7 +6,7 @@
       "variant": "max"
     },
     "hephaestus": {
-      "model": "openai/gpt-5.4-mini",
+      "model": "openai/gpt-5.3-codex",
       "variant": "medium"
     },
     "oracle": {
@@ -14,7 +14,8 @@
       "variant": "high"
     },
     "explore": {
-      "model": "opencode/big-pickle"
+      "model": "openai/gpt-5.4-mini",
+      "variant": "medium"
     },
     "multimodal-looker": {
       "model": "openai/gpt-5.4",
@@ -33,10 +34,12 @@
       "variant": "xhigh"
     },
     "atlas": {
-      "model": "opencode/minimax-m2.5-free"
+      "model": "openai/gpt-5.3-codex",
+      "variant": "medium"
     },
     "sisyphus-junior": {
-      "model": "opencode/nemotron-3-super-free"
+      "model": "openai/gpt-5.3-codex",
+      "variant": "medium"
     }
   },
   "categories": {
@@ -53,17 +56,19 @@
       "variant": "medium"
     },
     "artistry": {
-      "model": "openai/gpt-5.4",
+      "model": "zhipuai-coding-plan/glm-4.6v",
       "variant": "high"
     },
     "quick": {
-      "model": "opencode/nemotron-3-super-free"
+      "model": "openai/gpt-5.4-mini",
+      "variant": "medium"
     },
     "unspecified-low": {
-      "model": "opencode/big-pickle"
+      "model": "openai/gpt-5.4-mini",
+      "variant": "medium"
     },
     "unspecified-high": {
-      "model": "openai/gpt-5.4-mini",
+      "model": "openai/gpt-5.2",
       "variant": "medium"
     },
     "writing": {

@@ -8,13 +8,11 @@
 
 ## 分层策略
 
-| Tier | 来源 | 用途 |
+| 策略 | 范围 | 用途 |
 |---|---|---|
-| T1 | OpenAI (`openai/*`) | 关键决策位 — oracle、ultrabrain、deep、multimodal-looker |
-| T2 | ZhiPu (`zhipuai-coding-plan/*`) | 核心执行位 — sisyphus、prometheus、metis、momus 等 |
-| T3 | Free (`opencode/*-free`) | 高频低价值位 — explore、atlas、sisyphus-junior、quick 等 |
+| Capability-first | `opencode models` 可见且 `test_results.json` 可用的模型 | 全部位置统一按能力与角色匹配分配，不考虑成本 |
 
-优先级：T1 > T2 > T3。替换时同 Tier 优先，跨 Tier 仅在明确需要时调整。
+优先级：统一以模型实际能力、可用性与角色匹配为准，不按 provider、品牌或价格预设优先级。
 
 ## 文件说明
 
@@ -66,7 +64,7 @@ PY
 cp oh-my-openagent.json ~/.config/opencode/oh-my-openagent.json
 ```
 
-最后一个命令块会直接输出“最终候选集”：也就是同时满足“`opencode models` 可见”且“`test_results.json` 中 `connected=true`、`status == 200`、`error` 为空”的模型。
+最后一个命令块会直接输出“最终候选集”：也就是同时满足“`opencode models` 可见”且“`test_results.json` 中 `connected=true`、`status == 200`、`error` 为空”的模型。后续分配只按能力与角色匹配决定，不考虑成本。
 
 ## 变更流程
 
@@ -85,29 +83,29 @@ cp oh-my-openagent.json ~/.config/opencode/oh-my-openagent.json
 
 | Agent | 模型 | Variant |
 |---|---|---|
-| sisyphus | glm-5.1 | max |
-| hephaestus | glm-5 | medium |
+| sisyphus | gpt-5.4 | max |
+| hephaestus | gpt-5.3-codex | medium |
 | oracle | gpt-5.4 | high |
-| explore | big-pickle | — |
+| explore | gpt-5.4-mini | medium |
 | multimodal-looker | gpt-5.4 | medium |
-| prometheus | glm-5.1 | max |
-| metis | glm-5.1 | max |
-| momus | glm-5.1 | xhigh |
-| atlas | minimax-m2.5-free | — |
-| sisyphus-junior | nemotron-3-super-free | — |
+| prometheus | gpt-5.4 | max |
+| metis | gpt-5.4 | max |
+| momus | gpt-5.4 | xhigh |
+| atlas | gpt-5.3-codex | medium |
+| sisyphus-junior | gpt-5.3-codex | medium |
 
 **Categories：**
 
 | Category | 模型 | Variant |
 |---|---|---|
-| visual-engineering | glm-5 | high |
+| visual-engineering | gpt-5.4 | high |
 | ultrabrain | gpt-5.4 | xhigh |
 | deep | gpt-5.4 | medium |
-| artistry | glm-5 | high |
-| quick | nemotron-3-super-free | — |
-| unspecified-low | big-pickle | — |
-| unspecified-high | glm-5 | — |
-| writing | glm-5 | — |
+| artistry | zhipuai-coding-plan/glm-4.6v | high |
+| quick | gpt-5.4-mini | medium |
+| unspecified-low | gpt-5.4-mini | medium |
+| unspecified-high | gpt-5.2 | medium |
+| writing | gpt-5.4-mini | medium |
 
 ## License
 
